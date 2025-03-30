@@ -101,7 +101,7 @@ document.getElementById('fileInputQR').addEventListener('change', function(event
             if (!imgElement) {
                 imgElement = document.createElement('img');
                 imgElement.id = 'imgQR';
-                imgElement.classList.add('w-full', 'h-full', 'object-contain');
+                imgElement.classList.add('w-full', 'h-full', 'object-cover');
                 previewContainer.appendChild(imgElement);
             }
 
@@ -130,7 +130,7 @@ document.getElementById('fileInputProfile').addEventListener('change', function(
             if (!imgElement) {
                 imgElement = document.createElement('img');
                 imgElement.id = 'imgProfile';
-                imgElement.classList.add('w-full', 'h-full', 'object-contain');
+                imgElement.classList.add('w-full', 'h-full', 'object-cover');
                 previewContainer.appendChild(imgElement);
             }
 
@@ -168,12 +168,12 @@ document.getElementById("download").addEventListener("click", async () => {
 
     try {
         const dataUrl = await htmlToImage.toPng(selectedArea, {
-            quality: 1, // Ensures high quality
-            backgroundColor: "white", // Ensures white background
-            width: selectedArea.offsetWidth * 2, // Double resolution for better quality
-            height: selectedArea.offsetHeight * 2,
+            quality: 1,
+            backgroundColor: "white",
+            width: selectedArea.offsetWidth * 1,
+            height: selectedArea.offsetHeight * 1,
             style: {
-                transform: "scale(2)", // Scale to improve sharpness
+                transform: "scale(1)",
                 transformOrigin: "top left",
                 margin: "0px"
             }
