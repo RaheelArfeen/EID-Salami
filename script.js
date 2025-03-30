@@ -158,19 +158,28 @@ document.getElementById('profileField').addEventListener('input', function() {
 });
 
 
-function downloadImage() {
-    const element = document.getElementById("selectedArea");
-
-    html2canvas(element, {
+async function downloadCard() {
+    const selectedArea = document.getElementById("selectedArea");
+  
+    if (!selectedArea) {
+      console.error("Error: selectedArea not found.");
+      return;
+    }
+  
+    try {
+      const canvas = await html2canvas(selectedArea, {
+        scale: 2,
         backgroundColor: null,
-        scale: 3,
-        useCORS: true
-    }).then(canvas => {
-        const a = document.createElement("a");
-        a.href = canvas.toDataURL("image/png");
-        a.download = "selected-area.png";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    });
-}
+      });
+  
+      const friendName = "John Doe"; // Replace this with a dynamic variable
+  
+      const link = document.createElement("a");
+      link.download = `eid-salami-${friendName.toLowerCase().replace(/\s+/g, "-")}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    } catch (error) {
+      console.error("Error generating image:", error);
+    }
+  }
+  
