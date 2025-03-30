@@ -158,28 +158,35 @@ document.getElementById('profileField').addEventListener('input', function() {
 });
 
 
-async function downloadCard() {
+document.getElementById("download").addEventListener("click", async () => {
     const selectedArea = document.getElementById("selectedArea");
-  
+
     if (!selectedArea) {
-      console.error("Error: selectedArea not found.");
-      return;
+        alert("Error: Could not find the selected area!");
+        return;
     }
-  
+
     try {
-      const canvas = await html2canvas(selectedArea, {
-        scale: 2,
-        backgroundColor: null,
-      });
-  
-      const friendName = "John Doe"; // Replace this with a dynamic variable
-  
-      const link = document.createElement("a");
-      link.download = `eid-salami-${friendName.toLowerCase().replace(/\s+/g, "-")}.png`;
-      link.href = canvas.toDataURL("image/png");
-      link.click();
+        const dataUrl = await htmlToImage.toPng(selectedArea, {
+            quality: 1, // Ensures high quality
+            backgroundColor: "white", // Ensures white background
+            width: selectedArea.offsetWidth * 2, // Double resolution for better quality
+            height: selectedArea.offsetHeight * 2,
+            style: {
+                transform: "scale(2)", // Scale to improve sharpness
+                transformOrigin: "top left",
+                margin: "0px"
+            }
+        });
+
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = "EidCard.png";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     } catch (error) {
-      console.error("Error generating image:", error);
+        console.error("Error capturing image:", error);
+        alert("Failed to generate image. Please try again.");
     }
-  }
-  
+});

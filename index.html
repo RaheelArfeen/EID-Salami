@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>সালামি QR - সালামি দেন, সাওয়াব কামান</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.10.0/dist/html-to-image.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
@@ -111,7 +111,7 @@
                                         <p class="text-sm text-[#64748b] mb-1">Drag & drop your image here</p>
                                         <p class="text-xs text-[#64748b] mb-3">PNG, JPG or JPEG (max 5MB)</p>
                                         <div>
-                                            <button onclick="getQRcode()" id="profile-upload-btn" class="inline-flex items-center justify-center gap-2 bg-[#f3f4f8] py-2 px-5 rounded-xl cursor-pointer">
+                                            <button id="profile-upload-btn" class="inline-flex items-center justify-center gap-2 bg-[#f3f4f8] py-2 px-5 rounded-xl cursor-pointer">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload h-4 w-4 mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
                                                 Upload
                                             </button>
@@ -143,7 +143,7 @@
                                         <p class="text-sm text-[#64748b] mb-1">Drag & drop your image here</p>
                                         <p class="text-xs text-[#64748b] mb-3">PNG, JPG or JPEG (max 5MB)</p>
                                         <div>
-                                            <button onclick="getQRcode()" id="bKash-upload-btn" class="inline-flex items-center justify-center gap-2 bg-[#f3f4f8] py-2 px-5 rounded-xl cursor-pointer">
+                                            <button id="bKash-upload-btn" class="inline-flex items-center justify-center gap-2 bg-[#f3f4f8] py-2 px-5 rounded-xl cursor-pointer">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload h-4 w-4 mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
                                                 Upload
                                             </button>
@@ -210,7 +210,7 @@
                                     </div>
                                 </div>
                                 <div class="flex space-x-3 mt-6 mx-auto">
-                                    <button onclick="downloadCard()" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all border border-[#0d9276] text-white bg-[#0d9276] hover:bg-[#259d83] px-4 py-2"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-download"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg> Download</button>
+                                    <button id="download" class="download-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all border border-[#0d9276] text-white bg-[#0d9276] hover:bg-[#259d83] px-4 py-2"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-download"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg> Download</button>
                                     <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all border border-[#d4af37] text-[#d4af37] hover:bg-[#fbf7eb] hover:text-[#121a2c] px-4 py-2"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-share"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M8.7 10.7l6.6 -3.4" /><path d="M8.7 13.3l6.6 3.4" /></svg> Share</button>
                                 </div>
                             </div>
@@ -260,7 +260,6 @@
 
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="script.js"></script>
 
 
